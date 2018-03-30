@@ -7,7 +7,7 @@ import java.util.List;
 public class LoyaltyAccount {
     private List<Transaction> transactions = new ArrayList<>();
     private int loyaltyPoints;
-    private float balance;
+    protected float balance;
     private String lastTransactionDate;
 
     public void credit(float amount) {

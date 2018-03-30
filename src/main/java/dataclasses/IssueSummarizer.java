@@ -7,7 +7,4 @@ public class IssueSummarizer {
         this.issue = issue;
     }
 
-    public String summarize() {
-        return "Description:'"+ issue.description() + "' Effort:'" + issue.effortManHours() + "' Priority:'" + issue.priority() + "'";
-    }
 }

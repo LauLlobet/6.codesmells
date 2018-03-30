@@ -11,6 +11,10 @@ public class Issue {
         this.priority = priority;
     }
 
+    public String summarize() {
+        return "Description:'"+ description() + "' Effort:'" + effortManHours() + "' Priority:'" + priority() + "'";
+    }
+
     public String description() {
         return description;
     }

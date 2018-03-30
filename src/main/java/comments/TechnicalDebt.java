@@ -15,20 +15,25 @@ public class TechnicalDebt {
 
 
     public void register(float effortManHours, String description) {
-        // check effort does not exceed max allowed
+        throwIfEffortManHoursExceedMax(effortManHours);
+        total += effortManHours;
+        recordIssue(new Issue(effortManHours, description));
+        lastIssueDate = getDateIn_ddMMYY();
+    }
+
+    private void recordIssue(Issue issue) {
+        issues.add(issue);
+    }
+
+    private String getDateIn_ddMMYY() {
+        LocalDate now = LocalDate.now();
+        return now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear();
+    }
+
+    private void throwIfEffortManHoursExceedMax(float effortManHours) throws IllegalArgumentException{
         if (effortManHours > 1000) {
             throw new IllegalArgumentException("Cannot register tech debt where effort is bigger than 1000 man hours to fix");
         }
-
-        // deduct amount from total
-        total += effortManHours;
-
-        // record issue
-        issues.add(new Issue(effortManHours, description));
-
-        // update last issue date
-        LocalDate now = LocalDate.now();
-        lastIssueDate = now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear();
     }
 
     public void fixed(float amount) {

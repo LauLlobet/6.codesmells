@@ -1,38 +1,37 @@
 package divergentchange;
 
-import java.util.List;
-
 public class OnDemandAgentService {
-    public List<String> log;
-    public String username;
-    public String password;
 
-    public OnDemandAgent startNewOnDemandMachine() {
-        logInfo("Starting on-demand agent startup logic");
+    public UserOD2 user;
+    public LoggerOD2 logger = new LoggerOD2();
 
+    public OnDemandAgent startNewOnDemandMachine(String username, String password) {
+        logger.logInfo("Starting on-demand agent startup logic");
         try {
-            if (isAuthorized(username, password)) {
-                logInfo(String.format("User %s will attempt to start a new on-demand agent.", username));
-                OnDemandAgent agent = startNewAmazonServer();
-                sendEmailToAdmin(String.format("User %s has successfully started a machine with ip %s.", username, agent.ip));
-
-                return agent;
-            }
-
-            logWarning(String.format("User %s attempted to start a new on-demand agent.", username));
-            throw new UnauthorizedAccessException("Unauthorized access to StartNewOnDemandMachine method.");
+            return tryToGetUserAndCreateServiceAndNotifyViaEmail(username,password);
         } catch (UnauthorizedAccessException e) {
-            logError("Exception in on-demand agent creation logic");
+            logger.logError("Exception in on-demand agent creation logic");
             throw e;
         }
     }
 
-    private void sendEmailToAdmin(String format) {
-        String emailHost = "email.mycompany.com";
-        String recipient = "admin@mycompany.com";
-
-        // actual email sending implementation omitted
+    private OnDemandAgent tryToGetUserAndCreateServiceAndNotifyViaEmail(String username, String password) {
+        user = getUserFrom(username,password);
+        return sendEmailAndReturnAgent();
     }
+
+    public UserOD2 getUserFrom(String username, String password) {
+        UserOD2 user = UserService.getUser(username,password);
+        logger.logInfo(String.format("User %s will attempt to start a new on-demand agent.", username));
+        return user;
+    }
+
+    private OnDemandAgent sendEmailAndReturnAgent() {
+        OnDemandAgent agent = startNewAmazonServer();
+        EmailSender.sendEmailToAdmin(String.format("User %s has successfully started a machine with ip %s.", user.getUsername(), agent.ip));
+        return agent;
+    }
+
 
     private OnDemandAgent startNewAmazonServer() {
         // Call Amazon API and start a new EC2 instance, implementation omitted
@@ -42,21 +41,5 @@ public class OnDemandAgentService {
         amazonAgent.imageId = "ami-784930";
 
         return amazonAgent;
-    }
-
-    private boolean isAuthorized(String username, String password) {
-        return username.equals("admin") && password.equals("passw0rd");
-    }
-
-    private void logInfo(String info) {
-        log.add("INFO: " + info);
-    }
-
-    private void logWarning(String warning) {
-        log.add("WARNING: " + warning);
-    }
-
-    private void logError(String error) {
-        log.add("ERROR: " + error);
     }
 }
