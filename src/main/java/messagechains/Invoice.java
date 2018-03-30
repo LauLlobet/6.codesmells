@@ -8,7 +8,7 @@ public class Invoice {
     private final Customer customer;
     private List<InvoiceItem> invoiceItems = new ArrayList<>();
 
-    public Invoice(Customer customer) {
+    Invoice(Customer customer) {
         this.customer = customer;
     }
 
@@ -23,10 +23,9 @@ public class Invoice {
             invoiceTotal += invoiceItem.subtotal();
         }
 
-        if (!customer.isInEurope()) {
-            invoiceTotal += SHIPPING_COST_OUTSIDE_EU;
+        if (customer.isInEurope()) {
+            return invoiceTotal;
         }
-
-        return invoiceTotal;
+        return  invoiceTotal + SHIPPING_COST_OUTSIDE_EU;
     }
 }

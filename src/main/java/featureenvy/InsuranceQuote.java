@@ -3,7 +3,7 @@ package featureenvy;
 public class InsuranceQuote {
     final Motorist motorist;
 
-    public InsuranceQuote(Motorist motorist) {
+    InsuranceQuote(Motorist motorist) {
         this.motorist = motorist;
     }
 

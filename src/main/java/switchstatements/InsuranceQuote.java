@@ -1,11 +1,9 @@
 package switchstatements;
 
-import static switchstatements.RiskFactor.*;
-
 public class InsuranceQuote {
     private final Motorist motorist;
 
-    public InsuranceQuote(Motorist motorist) {
+    InsuranceQuote(Motorist motorist) {
         this.motorist = motorist;
     }
 

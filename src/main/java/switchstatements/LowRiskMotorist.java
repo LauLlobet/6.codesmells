@@ -1,14 +1,12 @@
 package switchstatements;
 
-import java.time.LocalDate;
-
 public class LowRiskMotorist extends  Motorist {
-    public LowRiskMotorist(Age age, int pointsOnLicense) {
+    LowRiskMotorist(Age age, int pointsOnLicense) {
         super(age, pointsOnLicense);
     }
 
     @Override
-    public double calculateInsurancePremium(double insuranceValue) throws Exception {
+    public double calculateInsurancePremium(double insuranceValue) {
         return 0.02 * insuranceValue;
     }
 

@@ -6,7 +6,7 @@ public class Age {
 
     private LocalDate dateOfBirth;
 
-    public Age(LocalDate birthDate) {
+    Age(LocalDate birthDate) {
         dateOfBirth = birthDate;
     }
 

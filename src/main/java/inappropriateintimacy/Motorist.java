@@ -19,15 +19,15 @@ public class Motorist {
         return title() + " " + firstName() + " " + surname() + ", " + license.points()+ " points";
     }
 
-    public String title() {
+    private String title() {
         return title;
     }
 
-    public String firstName() {
+    private String firstName() {
         return firstName;
     }
 
-    public String surname() {
+    private String surname() {
         return surname;
     }
 }

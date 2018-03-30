@@ -15,11 +15,11 @@ public class Motorist {
         this.pointsOnLicense = pointsOnLicense;
     }
 
-    public int pointsOnLicense() {
+    private int pointsOnLicense() {
         return pointsOnLicense;
     }
 
-    public int age() {
+    private int age() {
         LocalDate now = LocalDate.now();
         int ageYr = now.getYear() - dateOfBirth.getYear();
         int ageMo = now.getMonthValue() - dateOfBirth.getMonthValue();

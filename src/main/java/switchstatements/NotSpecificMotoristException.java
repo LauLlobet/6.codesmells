@@ -1,4 +1,4 @@
 package switchstatements;
 
-public class NotSpecificMotoristException extends Exception {
+class NotSpecificMotoristException extends Exception {
 }

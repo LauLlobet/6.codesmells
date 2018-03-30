@@ -8,7 +8,7 @@ public class Invoice {
     private final Customer customer;
     private List<InvoiceItem> invoiceItems = new ArrayList<>();
 
-    public Invoice(Customer customer) {
+    Invoice(Customer customer) {
         this.customer = customer;
     }
 
