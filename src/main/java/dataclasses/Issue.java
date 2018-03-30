@@ -15,15 +15,15 @@ public class Issue {
         return "Description:'"+ description() + "' Effort:'" + effortManHours() + "' Priority:'" + priority() + "'";
     }
 
-    public String description() {
+    private String description() {
         return description;
     }
 
-    public Integer effortManHours() {
+    private Integer effortManHours() {
         return effortManHours;
     }
 
-    public Priority priority() {
+    private Priority priority() {
         return priority;
     }
 }

@@ -16,7 +16,7 @@ public class InsuranceQuotationShould {
 
     @Test
     public void
-    high_risk_motorists_pay_premium_of_six_percent_of_insurance_value() {
+    high_risk_motorists_pay_premium_of_six_percent_of_insurance_value() throws Exception {
         InsuranceQuote quote = buildInsuranceQuoteForMotorist("1990-01-01", 5);
 
         assertThat(quote.CalculateInsurancePremium(10000d), is(600d));
@@ -24,7 +24,7 @@ public class InsuranceQuotationShould {
 
     @Test
     public void
-    low_risk_motorists_pay_premium_of_two_percent_of_insurance_value() {
+    low_risk_motorists_pay_premium_of_two_percent_of_insurance_value() throws Exception {
         InsuranceQuote quote = buildInsuranceQuoteForMotorist("1960-01-01", 0);
 
         assertThat(quote.CalculateInsurancePremium(10000d), is(200d));
@@ -32,7 +32,7 @@ public class InsuranceQuotationShould {
 
     @Test
     public void
-    moderate_risk_motorists_pay_premium_of_four_percent_of_insurance_value() {
+    moderate_risk_motorists_pay_premium_of_four_percent_of_insurance_value() throws Exception {
         InsuranceQuote quote = buildInsuranceQuoteForMotorist("1960-01-01", 1);
 
         assertThat(quote.CalculateInsurancePremium(10000d), is(400d));
@@ -57,11 +57,11 @@ public class InsuranceQuotationShould {
     }
 
     private RiskFactor calculateMotoristRisk(String dateOfBirth, int pointsOnLicense) {
-        return buildInsuranceQuoteForMotorist(dateOfBirth, pointsOnLicense).calculateMotoristRisk();
+        return MotoristFactory.createMotorist(pointsOnLicense,parseDate(dateOfBirth)).getRisk();
     }
 
     private InsuranceQuote buildInsuranceQuoteForMotorist(String dateOfBirth, int pointsOnLicense) {
-        return new InsuranceQuote(new Motorist(parseDate(dateOfBirth), pointsOnLicense));
+        return new InsuranceQuote(MotoristFactory.createMotorist( pointsOnLicense,parseDate(dateOfBirth)));
     }
 
     private LocalDate parseDate(String dateOfBirth) {

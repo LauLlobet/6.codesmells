@@ -4,7 +4,7 @@ package switchstatements;
 import java.time.LocalDate;
 
 public class MotoristFactory {
-    public Motorist createMotorist(int pointsOnLicense, LocalDate birthDate){
+    public static Motorist createMotorist(int pointsOnLicense, LocalDate birthDate){
         Age age = new Age(birthDate);
         if (pointsOnLicense > 3 || age.getAgeFromNow() < 25)
         {

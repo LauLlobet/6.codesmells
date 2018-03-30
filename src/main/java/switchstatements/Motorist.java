@@ -17,4 +17,8 @@ public class Motorist {
     public double calculateInsurancePremium(double insuranceValue) throws Exception {
         throw new NotSpecificMotoristException();
     }
+
+    public RiskFactor getRisk() {
+        return RiskFactor.HIGH_RISK;
+    }
 }
