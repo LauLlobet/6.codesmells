@@ -2,6 +2,10 @@ package featureenvy;
 
 import java.time.LocalDate;
 
+import static featureenvy.RiskFactor.HIGH_RISK;
+import static featureenvy.RiskFactor.LOW_RISK;
+import static featureenvy.RiskFactor.MODERATE_RISK;
+
 public class Motorist {
     private final LocalDate dateOfBirth;
     private final int pointsOnLicense;
@@ -30,5 +34,19 @@ public class Motorist {
         }
 
         return ageYr;
+    }
+
+    public RiskFactor calculateMotoristRisk() {
+        if (pointsOnLicense() > 3 || age() < 25)
+        {
+            return HIGH_RISK;
+        }
+
+        if (pointsOnLicense() > 0)
+        {
+            return MODERATE_RISK;
+        }
+
+        return LOW_RISK;
     }
 }

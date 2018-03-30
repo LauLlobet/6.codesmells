@@ -1,10 +1,11 @@
 package divergentchange;
 
-public class UserOD2 {
+public class User {
     private final String password;
+
     private final String username;
 
-    public UserOD2(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

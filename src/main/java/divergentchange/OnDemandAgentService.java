@@ -2,8 +2,8 @@ package divergentchange;
 
 public class OnDemandAgentService {
 
-    public UserOD2 user;
-    public LoggerOD2 logger = new LoggerOD2();
+    public User user;
+    public Logger logger = new Logger();
 
     public OnDemandAgent startNewOnDemandMachine(String username, String password) {
         logger.logInfo("Starting on-demand agent startup logic");
@@ -20,8 +20,8 @@ public class OnDemandAgentService {
         return sendEmailAndReturnAgent();
     }
 
-    public UserOD2 getUserFrom(String username, String password) {
-        UserOD2 user = UserService.getUser(username,password);
+    public User getUserFrom(String username, String password) {
+        User user = UserService.getUser(username,password);
         logger.logInfo(String.format("User %s will attempt to start a new on-demand agent.", username));
         return user;
     }

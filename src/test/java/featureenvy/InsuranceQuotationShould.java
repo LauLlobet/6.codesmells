@@ -57,7 +57,7 @@ public class InsuranceQuotationShould {
     }
 
     private RiskFactor calculateMotoristRisk(String dateOfBirth, int pointsOnLicense) {
-        return buildInsuranceQuoteForMotorist(dateOfBirth, pointsOnLicense).calculateMotoristRisk();
+        return buildInsuranceQuoteForMotorist(dateOfBirth, pointsOnLicense).motorist.calculateMotoristRisk();
     }
 
     private InsuranceQuote buildInsuranceQuoteForMotorist(String dateOfBirth, int pointsOnLicense) {

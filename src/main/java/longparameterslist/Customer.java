@@ -7,18 +7,11 @@ public class Customer {
     public Address address;
 
     public String summary() {
-        return buildCustomerSummary(
-                firstName,
-                lastName,
-                title,
-                this.address.city,
-                this.address.postcode,
-                this.address.country
-        );
+        return buildCustomerSummary();
     }
 
-    private String buildCustomerSummary(String customerFirstName, String customerLastName, String customerTitle, String customerCity, String customerPostCode, String customerCountry) {
-        return customerTitle + " " + customerFirstName + " " + customerLastName + ", " + customerCity + ", "
-                + customerPostCode + ", " + customerCountry;
+    private String buildCustomerSummary() {
+        return title + " " + firstName + " " + lastName + ", " + address.city + ", "
+                + address.postcode + ", " + address.country;
     }
 }

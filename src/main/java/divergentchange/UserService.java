@@ -2,9 +2,9 @@ package divergentchange;
 
 public class UserService {
 
-    public static UserOD2 getUser(String username, String password) {
+    public static User getUser(String username, String password) {
         if(isAuthorized(username,password)){
-            return new UserOD2(username,password);
+            return new User(username,password);
         }
         throw new UnauthorizedAccessException("Unauthorized access to StartNewOnDemandMachine method.");
     }

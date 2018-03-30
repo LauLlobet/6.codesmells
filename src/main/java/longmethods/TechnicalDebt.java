@@ -10,32 +10,16 @@ public class TechnicalDebt {
     private float total;
 
     public void register(float effortManHours, String description) {
-        if (effortManHours > 1000 || effortManHours <= 0)
-        {
-            throw new IllegalArgumentException("Cannot register tech debt where effort is bigger than 1000 man hours to fix");
-        }
-
-        Priority priority = Priority.LOW;
-
-        if (effortManHours > 100)
-        {
-            priority = Priority.MEDIUM;
-        }
-
-        if (effortManHours > 250)
-        {
-            priority = Priority.HIGH;
-        }
-
-        if (effortManHours > 500)
-        {
-            priority = Priority.CRITICAL;
-        }
+        Priority priority = Priority.getPriorityFromEffort(effortManHours);
 
         total += effortManHours;
 
         issues.add(new Issue(effortManHours, description, priority));
 
+        storeLastIssueDateWithToday();
+    }
+
+    private void storeLastIssueDateWithToday() {
         LocalDate now = LocalDate.now();
         lastIssueDate = now.getDayOfMonth() + "/" + now.getMonthValue() + "/" + now.getYear();
     }

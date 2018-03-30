@@ -10,4 +10,8 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+    public Country getCountry() {
+        return address.getCountry();
+    }
 }

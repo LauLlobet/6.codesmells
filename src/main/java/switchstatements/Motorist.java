@@ -1,13 +1,11 @@
 package switchstatements;
 
-import java.time.LocalDate;
-
 public class Motorist {
-    private final LocalDate dateOfBirth;
+    private final Age age;
     private final int pointsOnLicense;
 
-    public Motorist(LocalDate dateOfBirth, int pointsOnLicense) {
-        this.dateOfBirth = dateOfBirth;
+    public Motorist(Age dateOfBirth, int pointsOnLicense) {
+        this.age = dateOfBirth;
         this.pointsOnLicense = pointsOnLicense;
     }
 
@@ -15,20 +13,8 @@ public class Motorist {
         return pointsOnLicense;
     }
 
-    public int age() {
-        LocalDate now = LocalDate.now();
-        int ageYr = now.getYear() - dateOfBirth.getYear();
-        int ageMo = now.getMonthValue() - dateOfBirth.getMonthValue();
 
-        return adjustYearsDownIfNegativeMonthDifference(ageYr, ageMo);
-    }
-
-    private int adjustYearsDownIfNegativeMonthDifference(int ageYr, int ageMo)
-    {
-        if (ageMo < 0) {
-            ageYr--;
-        }
-
-        return ageYr;
+    public double calculateInsurancePremium(double insuranceValue) throws Exception {
+        throw new NotSpecificMotoristException();
     }
 }

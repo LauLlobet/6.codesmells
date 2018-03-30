@@ -23,8 +23,7 @@ public class Invoice {
             invoiceTotal += invoiceItem.subtotal();
         }
 
-        Address address = customer.getAddress();
-        Country country = address.getCountry();
+        Country country = customer.getCountry();
 
         if (!country.isInEurope()) {
             invoiceTotal += SHIPPING_COST_OUTSIDE_EU;

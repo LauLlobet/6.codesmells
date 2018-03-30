@@ -1,22 +1,25 @@
 package inappropriateintimacy;
 
+import static inappropriateintimacy.RiskFactor.*;
+
 public class License {
     private int points;
-    private Motorist motorist;
 
     public void addPoints(int points) {
         this.points += points;
     }
 
-    public String summary() {
-        return motorist.title() + " " + motorist.firstName() + " " + motorist.surname() + ", " + points + " points";
-    }
-
-    public void setMotorist(Motorist motorist) {
-        this.motorist = motorist;
-    }
-
     public int points() {
         return points;
+    }
+
+    public RiskFactor riskFactor() {
+        if (points() > 3) {
+            return HIGH_RISK;
+        }
+        if (points() > 0) {
+            return MODERATE_RISK;
+        }
+        return LOW_RISK;
     }
 }

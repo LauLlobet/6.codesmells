@@ -10,4 +10,8 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+    public boolean isInEurope() {
+        return address.isInEurope();
+    }
 }

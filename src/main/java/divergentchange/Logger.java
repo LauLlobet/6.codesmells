@@ -3,7 +3,7 @@ package divergentchange;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoggerOD2 {
+public class Logger {
     public List<String> log = new ArrayList<>();
     public void logInfo(String info) {
         log.add("INFO: " + info);
